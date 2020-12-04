@@ -78,5 +78,3 @@ def get_kobart_tokenizer(cachedir='~/kobart/'):
                                             bos_token='<s>', eos_token='</s>', unk_token='<unk>',
                                             pad_token='<pad>', mask_token='<mask>')
     return tokenizer_obj
-
-

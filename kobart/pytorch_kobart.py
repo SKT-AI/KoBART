@@ -16,8 +16,6 @@
 import os
 from zipfile import ZipFile
 
-import torch
-from transformers import BartModel
 from .utils import download as _download
 
 pytorch_kobart = {
@@ -42,4 +40,3 @@ def get_pytorch_kobart_model(ctx='cpu', cachedir='~/kobart/'):
         zipf.extractall(path=cachedir_full)
     model_path = os.path.join(cachedir_full, 'kobart_emji_from_pretrained')
     return model_path
-
