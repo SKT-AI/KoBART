@@ -9,6 +9,8 @@
   - [Tokenizer](#tokenizer)
   - [Model](#model)
     - [Performances](#performances)
+      - [Classification or Regression](#classification-or-regression)
+      - [Summerization](#summerization)
   - [Contacts](#contacts)
   - [License](#license)
 
@@ -81,9 +83,14 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-1.5372, -2.5599,  0.8382,  ..., 
 
 ### Performances
 
+#### Classification or Regression
+
 |   |  NSMC(acc)  | KorSTS(spearman) | Question Pair(acc) | 
 |---|---|---|---|
 | **KoBART**  | 90.07  | 81.31  | 93.80  |
+
+#### Summerization
+
 
 
 ## Contacts
