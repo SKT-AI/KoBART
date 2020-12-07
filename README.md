@@ -62,10 +62,10 @@ pip install .
 
 ## Model
 
-| Model         |  n_params |   Type   | n_layers  | n_heads | ffn_dim | hidden_dims | 
-|---------------|:----------:|:-------:|--------:|--------:|--------:|--------------:|
-| `KoBART-base` | 124M      |  Encoder |   6     | 16      | 3072    | 768           |
-|               |           |  Decoder |   6     | 16      | 3072    | 768           |
+| Model       | Training  |  # of params |   Type   | # of layers  | # of heads | ffn_dim | hidden_dims | 
+|--------------|------|:----------:|:-------:|--------:|--------:|--------:|--------------:|
+| `KoBART-base` | 3 weeks(w/ 48 x P40 GPUs) | 124M      |  Encoder |   6     | 16      | 3072    | 768           |
+|               | |           |  Decoder |   6     | 16      | 3072    | 768           |
 
 
 ```python
@@ -96,7 +96,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-1.5372, -2.5599,  0.8382,  ..., 
 
 ## Demos
 
-- <a href="http://20.194.43.11:7874/" target="_blank">요약 데모</a>
+- http://20.194.43.11:7874/
 
 <table><tr><td>
   <center><img src="imgs/kobart_summ.png" width="600"/></center>
