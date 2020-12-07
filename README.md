@@ -56,8 +56,8 @@ pip install .
 ```python
 >>> from kobart import get_kobart_tokenizer
 >>> kobart_tokenizer = get_kobart_tokenizer()
->>> kobart_tokenizer.tokenize("안녕하세요:). 한국어 BART 입니다🤣.")
-['▁안녕', '하세요', ':)', '▁.', '▁한국어', '▁B', 'A', 'R', 'T', '▁입', '니다', '🤣', '▁.']
+>>> kobart_tokenizer.tokenize("안녕하세요. 한국어 BART 입니다.🤣:)l^o")
+['▁안녕하', '세요.', '▁한국어', '▁B', 'A', 'R', 'T', '▁입', '니다.', '🤣', ':)', 'l^o']
 ```
 
 ## Model
