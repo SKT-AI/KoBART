@@ -56,15 +56,15 @@ pip install .
 ```python
 >>> from kobart import get_kobart_tokenizer
 >>> kobart_tokenizer = get_kobart_tokenizer()
->>> kobart_tokenizer.tokenize("안녕하세요. 한국어 BART 입니다.")
-['▁안녕하', '세요.', '▁한국어', '▁B', 'A', 'R', 'T', '▁입', '니다.']
+>>> kobart_tokenizer.tokenize("안녕하세요:). 한국어 BART 입니다🤣.")
+['▁안녕', '하세요', ':)', '▁.', '▁한국어', '▁B', 'A', 'R', 'T', '▁입', '니다', '🤣', '▁.']
 ```
 
 ## Model
 
 | Model       | Training  |  # of params |   Type   | # of layers  | # of heads | ffn_dim | hidden_dims | 
-|--------------|------|:----------:|:-------:|--------:|--------:|--------:|--------------:|
-| `KoBART-base` | 3 weeks(w/ 48 x P40 GPUs) | 124M      |  Encoder |   6     | 16      | 3072    | 768           |
+|--------------|:----:|:----------:|:-------:|--------:|--------:|--------:|--------------:|
+| `KoBART-base` | 3 weeks<br/>(P40 GPU x 48) | 124M      |  Encoder |   6     | 16      | 3072    | 768           |
 |               | |           |  Decoder |   6     | 16      | 3072    | 768           |
 
 
