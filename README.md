@@ -11,7 +11,7 @@
     - [Performances](#performances)
       - [Classification or Regression](#classification-or-regression)
       - [Summerization](#summerization)
-  - [Deoms](#deoms)
+  - [Demos](#demos)
   - [Contacts](#contacts)
   - [License](#license)
 
@@ -62,10 +62,10 @@ pip install .
 
 ## Model
 
-| Model         |  Type   | n_layers  | n_heads | ffn_dim | hidden_dims | 
-|---------------|:-------:|--------:|--------:|--------:|--------------:|
-| `KoBART-base` | Encoder |   6     | 16      | 3072    | 768           |
-|               | Decoder |   6     | 16      | 3072    | 768           |
+| Model         |  n_params |   Type   | n_layers  | n_heads | ffn_dim | hidden_dims | 
+|---------------|:----------:|:-------:|--------:|--------:|--------:|--------------:|
+| `KoBART-base` | 124M      |  Encoder |   6     | 16      | 3072    | 768           |
+|               |           |  Decoder |   6     | 16      | 3072    | 768           |
 
 
 ```python
