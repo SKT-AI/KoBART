@@ -20,7 +20,7 @@
 
 # 🤣 KoBART
 
-[**BART**](https://arxiv.org/pdf/1910.13461.pdf)(**B**idirectional and **A**uto-**R**egressive **T**ransformers)는 입력 텍스트 일부에 노이즈를 추가하여 이를 다시 원문으로 복구하는 `autoencoder`의 형태로 학습이 됩니다. 한국어 BART(이하 **KoBART**) 논문에서 언급한 `Text Infilling` 노이즈 함수를 사용하여 **40GB** 이상의 한국어 텍스트에 대해서 학습한 한국어 `encoder-docoder` 언어 모델입니다. 이를 통해 도출된 `KoBART-base`를 배포합니다.
+[**BART**](https://arxiv.org/pdf/1910.13461.pdf)(**B**idirectional and **A**uto-**R**egressive **T**ransformers)는 입력 텍스트 일부에 노이즈를 추가하여 이를 다시 원문으로 복구하는 `autoencoder`의 형태로 학습이 됩니다. 한국어 BART(이하 **KoBART**) 는 논문에서 사용된 `Text Infilling` 노이즈 함수를 사용하여 **40GB** 이상의 한국어 텍스트에 대해서 학습한 한국어 `encoder-docoder` 언어 모델입니다. 이를 통해 도출된 `KoBART-base`를 배포합니다.
 
 
 ![](imgs/bart.png)
@@ -41,7 +41,7 @@ pip install .
 | Korean Wiki |     5M   |  
 | Other corpus |  0.27B    | 
 
-한국어 wiki 데이터 이외 뉴스, books, 모두의 코퍼스(대화, 뉴스, ...), 청와대 국민청원 등의 다양한 데이터가 모델 학습에 사용되었습니다.
+한국어 wiki 데이터 이외 뉴스, books, 모두의 코퍼스 (대화, 뉴스, ...), 청와대 국민청원 등의 다양한 데이터가 모델 학습에 사용되었습니다.
 
 ## Tokenizer
 
