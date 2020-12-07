@@ -86,9 +86,9 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-1.5372, -2.5599,  0.8382,  ..., 
 
 #### Classification or Regression
 
-|   |  NSMC(acc)  | KorSTS(spearman) | Question Pair(acc) | 
+|   |  [NSMC](https://github.com/e9t/nsmc)(acc)  | [KorSTS](https://github.com/kakaobrain/KorNLUDatasets)(spearman) | [Question Pair](https://github.com/aisolab/nlp_classification/tree/master/BERT_pairwise_text_classification/qpair)(acc) | 
 |---|---|---|---|
-| **KoBART**  | 90.07  | 81.31  | 93.80  |
+| **KoBART-base**  | 90.07  | 81.31  | 93.80  |
 
 #### Summerization
 
