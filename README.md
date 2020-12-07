@@ -75,11 +75,11 @@ pip install .
 >>> model = BartModel.from_pretrained(get_pytorch_kobart_model())
 >>> inputs = kobart_tokenizer(['안녕하세요.'], return_tensors='pt')
 >>> model(inputs['input_ids'])
-Seq2SeqModelOutput(last_hidden_state=tensor([[[-1.5372, -2.5599,  0.8382,  ..., -2.6832,  2.5374,  1.7316],
-         [-1.6075, -3.0245,  1.3806,  ..., -3.4531,  1.8102,  2.0583]]],
-       grad_fn=<TransposeBackward0>), past_key_values=None, decoder_hidden_states=None, decoder_attentions=None, cross_attentions=None, encoder_last_hidden_state=tensor([[[ 0.5163, -0.3525,  0.5279,  ...,  0.1081,  0.5969,  0.1189],
-         [ 0.4078, -0.3281,  0.6627,  ...,  0.0751,  0.6414,  0.3749]]],
-       grad_fn=<TransposeBackward0>), encoder_hidden_states=None, encoder_attentions=None) 
+Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.2986, -3.2745,  1.1402,  ...,  0.2923,  0.1476,  0.9026],
+         [-0.0785, -2.9636,  1.1866,  ...,  1.5983,  0.8023, -0.3416]]],
+       grad_fn=<TransposeBackward0>), past_key_values=None, decoder_hidden_states=None, decoder_attentions=None, cross_attentions=None, encoder_last_hidden_state=tensor([[[ 0.5490, -0.3764,  0.1644,  ...,  0.1764,  0.3457,  0.3626],
+         [ 0.5063, -0.4550,  0.2146,  ...,  0.0104,  0.4986,  0.6238]]],
+       grad_fn=<TransposeBackward0>), encoder_hidden_states=None, encoder_attentions=None)
 ```
 
 ### Performances
