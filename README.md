@@ -41,7 +41,7 @@ pip install .
 | Korean Wiki |     5M   |  
 | Other corpus |  0.27B    | 
 
-한국어 wiki 데이터 이외 뉴스, books, 모두의 코퍼스 (대화, 뉴스, ...), 청와대 국민청원 등의 다양한 데이터가 모델 학습에 사용되었습니다.
+한국어 위키 백과 이외 뉴스, 책, [모두의 말뭉치 (대화, 뉴스, ...)](https://corpus.korean.go.kr/), [청와대 국민청원](https://github.com/akngs/petitions) 등의 다양한 데이터가 모델 학습에 사용되었습니다.
 
 ## Tokenizer
 
@@ -75,10 +75,10 @@ pip install .
 >>> model = BartModel.from_pretrained(get_pytorch_kobart_model())
 >>> inputs = kobart_tokenizer(['안녕하세요.'], return_tensors='pt')
 >>> model(inputs['input_ids'])
-Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.2986, -3.2745,  1.1402,  ...,  0.2923,  0.1476,  0.9026],
-         [-0.0785, -2.9636,  1.1866,  ...,  1.5983,  0.8023, -0.3416]]],
-       grad_fn=<TransposeBackward0>), past_key_values=None, decoder_hidden_states=None, decoder_attentions=None, cross_attentions=None, encoder_last_hidden_state=tensor([[[ 0.5490, -0.3764,  0.1644,  ...,  0.1764,  0.3457,  0.3626],
-         [ 0.5063, -0.4550,  0.2146,  ...,  0.0104,  0.4986,  0.6238]]],
+Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4488, -4.3651,  3.2349,  ...,  5.8916,  4.0497,  3.5468],
+         [-0.4096, -4.6106,  2.7189,  ...,  6.1745,  2.9832,  3.0930]]],
+       grad_fn=<TransposeBackward0>), past_key_values=None, decoder_hidden_states=None, decoder_attentions=None, cross_attentions=None, encoder_last_hidden_state=tensor([[[ 0.4624, -0.2475,  0.0902,  ...,  0.1127,  0.6529,  0.2203],
+         [ 0.4538, -0.2948,  0.2556,  ..., -0.0442,  0.6858,  0.4372]]],
        grad_fn=<TransposeBackward0>), encoder_hidden_states=None, encoder_attentions=None)
 ```
 
