@@ -41,7 +41,7 @@ pip install .
 | Korean Wiki |     5M   |  
 | Other corpus |  0.27B    | 
 
-한국어 위키 백과 이외 뉴스, 책, [모두의 말뭉치 (대화, 뉴스, ...)](https://corpus.korean.go.kr/), [청와대 국민청원](https://github.com/akngs/petitions) 등의 다양한 데이터가 모델 학습에 사용되었습니다.
+한국어 위키 백과 이외, 뉴스, 책, [모두의 말뭉치 (대화, 뉴스, ...)](https://corpus.korean.go.kr/), [청와대 국민청원](https://github.com/akngs/petitions) 등의 다양한 데이터가 모델 학습에 사용되었습니다.
 
 ## Tokenizer
 
