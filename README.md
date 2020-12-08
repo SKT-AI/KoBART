@@ -90,7 +90,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4488, -4.3651,  3.2349,  ..., 
 |---|---|---|---|
 | **KoBART-base**  | 90.07  | 81.31  | 93.80  |
 
-#### Summerization
+#### Summarization
 
 *업데이트 예정*
 
