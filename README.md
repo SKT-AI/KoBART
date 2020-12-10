@@ -109,7 +109,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4488, -4.3651,  3.2349,  ..., 
 
 - [KoBART ChitChatBot](https://github.com/haven-jeon/KoBART-chatbot)
 
-*KoBART 사용한 흥미로운 예제가 있다면 PR주세요!*
+*KoBART를 사용한 흥미로운 예제가 있다면 PR주세요!*
 
 ## Contacts
 
