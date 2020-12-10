@@ -65,8 +65,8 @@ pip install .
 
 | Model       |  # of params |   Type   | # of layers  | # of heads | ffn_dim | hidden_dims | 
 |--------------|:----:|:-------:|--------:|--------:|--------:|--------------:|
-| `KoBART-base` |  124M  |  Encoder |   6     | 16      | 3072    | 768           |
-| | | Decoder |   6     | 16      | 3072    | 768           |
+| `KoBART-base` |  124M  |  Encoder |   6     | 16      | 3072    | 768 | 
+|               |        | Decoder |   6     | 16      | 3072    | 768 |
 
 
 ```python
