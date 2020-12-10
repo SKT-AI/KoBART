@@ -103,7 +103,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4488, -4.3651,  3.2349,  ..., 
   <center><img src="imgs/kobart_summ.png" width="600"/></center>
 </td></tr></table>
 
-*위 기사는 [ZDNET 기사](https://zdnet.co.kr/view/?no=20201125093328)의 일부를 요약한 예시임*
+*위 예시는 [ZDNET 기사](https://zdnet.co.kr/view/?no=20201125093328)를 요약한 결과임*
 
 ## Examples
 
