@@ -3,7 +3,7 @@
 
 <!-- code_chunk_output -->
 
-- [🤣 KoBART](#-kobart)
+- [🤣 KoBART](#kobart)
   - [How to install](#how-to-install)
   - [Data](#data)
   - [Tokenizer](#tokenizer)
