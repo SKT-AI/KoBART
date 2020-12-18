@@ -21,12 +21,13 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os
-import sys
-import requests
 import hashlib
+import os
 import shutil
+import sys
 from zipfile import ZipFile
+
+import requests
 from transformers import PreTrainedTokenizerFast
 
 tokenizer = {

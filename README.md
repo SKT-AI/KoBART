@@ -14,6 +14,7 @@
   - [Demos](#demos)
   - [Examples](#examples)
   - [Contacts](#contacts)
+  - [Changes](#changes)
   - [License](#license)
 
 <!-- /code_chunk_output -->
