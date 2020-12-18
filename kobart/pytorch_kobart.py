@@ -22,15 +22,16 @@
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
 import os
+import shutil
 from zipfile import ZipFile
 
 from .utils import download as _download
 
 pytorch_kobart = {
     'url':
-    'https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_b2a7a19196.zip',
-    'fname': 'kobart_base_cased_b2a7a19196.zip',
-    'chksum': 'b2a7a19196'
+    'https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_0e7711aa26.zip',
+    'fname': 'kobart_base_cased_0e7711aa26.zip',
+    'chksum': '0e7711aa26'
 }
 
 
@@ -38,13 +39,15 @@ def get_pytorch_kobart_model(ctx='cpu', cachedir='~/kobart/'):
     # download model
     global pytorch_kobart
     model_info = pytorch_kobart
-    model_zip = _download(model_info['url'],
-                          model_info['fname'],
-                          model_info['chksum'],
-                          cachedir=cachedir)
+    model_zip, is_cached = _download(model_info['url'],
+                                     model_info['fname'],
+                                     model_info['chksum'],
+                                     cachedir=cachedir)
     cachedir_full = os.path.expanduser(cachedir)
-    if not os.path.exists(os.path.join(cachedir_full, 'kobart_emji_from_pretrained')):
+    model_path = os.path.join(cachedir_full, 'kobart_from_pretrained')
+    if not os.path.exists(model_path) or not is_cached:
+        if not is_cached:
+            shutil.rmtree(model_path, ignore_errors=True)
         zipf = ZipFile(os.path.expanduser(model_zip))
         zipf.extractall(path=cachedir_full)
-    model_path = os.path.join(cachedir_full, 'kobart_emji_from_pretrained')
     return model_path

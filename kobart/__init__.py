@@ -26,8 +26,6 @@ from . import pytorch_kobart
 from .utils import get_kobart_tokenizer, download
 from .pytorch_kobart import get_pytorch_kobart_model
 
-__version__ = '0.1.2'
-
 __all__ = ('download', 'get_kobart_tokenizer', 'get_pytorch_kobart_model')
 
 

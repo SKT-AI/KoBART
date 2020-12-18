@@ -25,6 +25,7 @@ import os
 import sys
 import requests
 import hashlib
+import shutil
 from zipfile import ZipFile
 from transformers import PreTrainedTokenizerFast
 
@@ -44,7 +45,7 @@ def download(url, filename, chksum, cachedir='~/kogpt2/'):
         if hashlib.md5(open(file_path,
                             'rb').read()).hexdigest()[:10] == chksum:
             print('using cached model')
-            return file_path
+            return file_path, True
     with open(file_path, 'wb') as f:
         response = requests.get(url, stream=True)
         total = response.headers.get('content-length')
@@ -65,7 +66,7 @@ def download(url, filename, chksum, cachedir='~/kogpt2/'):
     sys.stdout.write('\n')
     assert chksum == hashlib.md5(open(
         file_path, 'rb').read()).hexdigest()[:10], 'corrupted file!'
-    return file_path
+    return file_path, False
 
 
 def get_kobart_tokenizer(cachedir='~/kobart/'):
@@ -73,12 +74,14 @@ def get_kobart_tokenizer(cachedir='~/kobart/'):
     """
     global tokenizer
     model_info = tokenizer
-    file_path = download(model_info['url'],
-                         model_info['fname'],
-                         model_info['chksum'],
-                         cachedir=cachedir)
+    file_path, is_cached = download(model_info['url'],
+                                    model_info['fname'],
+                                    model_info['chksum'],
+                                    cachedir=cachedir)
     cachedir_full = os.path.expanduser(cachedir)
-    if not os.path.exists(os.path.join(cachedir_full, 'emji_tokenizer')):
+    if not os.path.exists(os.path.join(cachedir_full, 'emji_tokenizer')) or not is_cached:
+        if not is_cached:
+            shutil.rmtree(os.path.join(cachedir_full, 'emji_tokenizer'), ignore_errors=True)
         zipf = ZipFile(os.path.expanduser(file_path))
         zipf.extractall(path=cachedir_full)
     tok_path = os.path.join(cachedir_full, 'emji_tokenizer/model.json')

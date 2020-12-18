@@ -29,10 +29,7 @@
 ## How to install
 
 ```
-git clone https://github.com/SKT-AI/KoBART.git
-cd KoBART
-pip install -r requirements.txt
-pip install .
+pip install git+https://github.com/SKT-AI/KoBART#egg=kobart
 ```
 
 ## Data
@@ -42,7 +39,7 @@ pip install .
 | Korean Wiki |     5M   |  
 | Other corpus |  0.27B    | 
 
-한국어 위키 백과 이외, 뉴스, 책, [모두의 말뭉치 (대화, 뉴스, ...)](https://corpus.korean.go.kr/), [청와대 국민청원](https://github.com/akngs/petitions) 등의 다양한 데이터가 모델 학습에 사용되었습니다.
+한국어 위키 백과 이외, 뉴스, 책, [모두의 말뭉치 v1.0(대화, 뉴스, ...)](https://corpus.korean.go.kr/), [청와대 국민청원](https://github.com/akngs/petitions) 등의 다양한 데이터가 모델 학습에 사용되었습니다.
 
 ## Tokenizer
 
@@ -76,11 +73,9 @@ pip install .
 >>> model = BartModel.from_pretrained(get_pytorch_kobart_model())
 >>> inputs = kobart_tokenizer(['안녕하세요.'], return_tensors='pt')
 >>> model(inputs['input_ids'])
-Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4488, -4.3651,  3.2349,  ...,  5.8916,  4.0497,  3.5468],
-         [-0.4096, -4.6106,  2.7189,  ...,  6.1745,  2.9832,  3.0930]]],
-       grad_fn=<TransposeBackward0>), past_key_values=None, decoder_hidden_states=None, decoder_attentions=None, cross_attentions=None, encoder_last_hidden_state=tensor([[[ 0.4624, -0.2475,  0.0902,  ...,  0.1127,  0.6529,  0.2203],
-         [ 0.4538, -0.2948,  0.2556,  ..., -0.0442,  0.6858,  0.4372]]],
-       grad_fn=<TransposeBackward0>), encoder_hidden_states=None, encoder_attentions=None)
+Seq2SeqModelOutput(last_hidden_state=tensor([[[ 1.5513, -0.6550, -1.2556,  ..., -1.6575, -4.7325, -0.2962],
+         [ 1.9180, -1.0223,  0.8865,  ...,  0.0894, -4.3982,  0.6679]]],
+       grad_fn=<NativeLayerNormBackward>), past_key_values=((tensor([[[[-0.1339,  0.1619, -1.2464,  ...,  0.5346,  0.2715, -0.6445],
 ```
 
 ### Performances
@@ -89,7 +84,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4488, -4.3651,  3.2349,  ..., 
 
 |   |  [NSMC](https://github.com/e9t/nsmc)(acc)  | [KorSTS](https://github.com/kakaobrain/KorNLUDatasets)(spearman) | [Question Pair](https://github.com/aisolab/nlp_classification/tree/master/BERT_pairwise_text_classification/qpair)(acc) | 
 |---|---|---|---|
-| **KoBART-base**  | 90.07  | 81.31  | 93.80  |
+| **KoBART-base**  | 90.24  | 81.66  | 94.34  |
 
 #### Summarization
 
@@ -116,6 +111,15 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4488, -4.3651,  3.2349,  ..., 
 ## Contacts
 
 `KoBART` 관련 이슈는 [이곳](https://github.com/SKT-AI/KoBART/issues)에 올려주세요.
+
+
+## Changes
+
+- V0.2.0
+  - `KoBART` 모델 업데이트(서브테스트 sample efficient가 좋아짐)
+  - `모두의 말뭉치` 사용 버전 명시
+  - downloder 버그 수정
+  - `pip` 설치 지원
 
 ## License
 

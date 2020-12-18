@@ -1,9 +1,8 @@
-from kobart import __version__
 from setuptools import find_packages, setup
 
 setup(name='kobart',
-      version=__version__,
-      url='https://github.com/SKT-AI/KoBART',
+      version=0.2.0,
+      url='https://github.com/SKT-AI/KoBART.git',
       license='midified MIT',
       author='Heewon Jeon',
       author_email='madjakarta@gmail.com',
@@ -15,4 +14,8 @@ setup(name='kobart',
       long_description=open('README.md', encoding='utf-8').read(),
       zip_safe=False,
       include_package_data=True,
+      install_requires=[
+          'transformers == 4.1.1',
+          'torch == 1.7.1'
+      ]
       )
