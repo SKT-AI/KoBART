@@ -1,3 +1,26 @@
+# coding=utf-8
+# Modified MIT License
+
+# Software Copyright (c) 2020 SK telecom
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+# associated documentation files (the "Software"), to deal in the Software without restriction,
+# including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+# The above copyright notice and this permission notice need not be included
+# with content created by the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+# INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+# BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+# TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.
+
 import argparse
 import logging
 import os
@@ -13,16 +36,12 @@ from transformers import BartForSequenceClassification
 
 from kobart import get_kobart_tokenizer, get_pytorch_kobart_model
 
-parser = argparse.ArgumentParser(description='subtask for Ko(BART, BERT)')
+parser = argparse.ArgumentParser(description='subtask for KoBART')
 
 parser.add_argument('--subtask',
                     type=str,
                     default='NSMC',
                     help='NSMC')
-
-parser.add_argument('--checkpoint_path',
-                    type=str,
-                    help='checkpoint path')
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -49,7 +68,7 @@ class ArgsBase():
                             help='')
         parser.add_argument('--max_seq_len',
                             type=int,
-                            default=64,
+                            default=128,
                             help='')
         return parser
 
@@ -248,4 +267,3 @@ if __name__ == '__main__':
     trainer = pl.Trainer.from_argparse_args(args, logger=tb_logger,
                                             callbacks=[checkpoint_callback, lr_logger])  
     trainer.fit(model, dm)
-    # python nsmc.py --gpus 1 --max_epochs 3 --precision 16 --batch_size 256 --default_root_dir .
