@@ -9,7 +9,8 @@ setup(name='kobart',
       description='KoBART (Korean BART)',
       packages=find_packages(where=".", exclude=(
           'tests',
-          'scripts'
+          'scripts',
+          'examples'
       )),
       long_description=open('README.md', encoding='utf-8').read(),
       zip_safe=False,
