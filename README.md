@@ -106,6 +106,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[ 1.5513, -0.6550, -1.2556,  ..., 
 - [KoBART ChitChatBot](https://github.com/haven-jeon/KoBART-chatbot)
 - [KoBART Summarization](https://github.com/seujung/KoBART-summarization)
 - [NSMC Classification](https://github.com/SKT-AI/KoBART/tree/main/examples)
+- [KoBART Translation](https://github.com/seujung/KoBART-translation)
 
 
 *KoBART를 사용한 흥미로운 예제가 있다면 PR주세요!*
