@@ -32,9 +32,9 @@ from transformers import PreTrainedTokenizerFast
 
 tokenizer = {
     'url':
-    'https://kobert.blob.core.windows.net/models/kobart/kobart_base_tokenizer_cased_a432df8fec.zip',
-    'fname': 'kobart_base_tokenizer_cased_a432df8fec.zip',
-    'chksum': 'a432df8fec'
+    'https://kobert.blob.core.windows.net/models/kobart/kobart_base_tokenizer_cased_cf74400bce.zip',
+    'fname': 'kobart_base_tokenizer_cased_cf74400bce.zip',
+    'chksum': 'cf74400bce'
 }
 
 

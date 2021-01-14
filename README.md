@@ -118,7 +118,9 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[ 1.5513, -0.6550, -1.2556,  ..., 
 
 ## Changes
 
-- V0.2.0
+- V0.3
+  - 토크나이저 버그로 인해 `<unk>` 토큰이 사라지는 이슈 해결
+- V0.2
   - `KoBART` 모델 업데이트(서브테스트 sample efficient가 좋아짐)
   - `모두의 말뭉치` 사용 버전 명시
   - downloder 버그 수정

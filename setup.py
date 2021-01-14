@@ -24,7 +24,7 @@
 from setuptools import find_packages, setup
 
 setup(name='kobart',
-      version=0.2,
+      version=0.3,
       url='https://github.com/SKT-AI/KoBART.git',
       license='midified MIT',
       author='Heewon Jeon',
