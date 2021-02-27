@@ -74,9 +74,9 @@ pip install git+https://github.com/SKT-AI/KoBART#egg=kobart
 >>> model = BartModel.from_pretrained(get_pytorch_kobart_model())
 >>> inputs = kobart_tokenizer(['안녕하세요.'], return_tensors='pt')
 >>> model(inputs['input_ids'])
-Seq2SeqModelOutput(last_hidden_state=tensor([[[ 1.5513, -0.6550, -1.2556,  ..., -1.6575, -4.7325, -0.2962],
-         [ 1.9180, -1.0223,  0.8865,  ...,  0.0894, -4.3982,  0.6679]]],
-       grad_fn=<NativeLayerNormBackward>), past_key_values=((tensor([[[[-0.1339,  0.1619, -1.2464,  ...,  0.5346,  0.2715, -0.6445],
+Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ...,  5.8832,  4.0629,  3.5540],
+         [-0.1316, -4.6446,  2.5955,  ...,  6.0093,  2.7467,  3.0007]]],
+       grad_fn=<NativeLayerNormBackward>), past_key_values=((tensor([[[[-9.7980e-02, -6.6584e-01, -1.8089e+00,  ...,  9.6023e-01, -1.8818e-01, -1.3252e+00],
 ```
 
 ### Performances

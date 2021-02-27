@@ -24,7 +24,7 @@
 from setuptools import find_packages, setup
 
 setup(name='kobart',
-      version=0.3,
+      version=0.4,
       url='https://github.com/SKT-AI/KoBART.git',
       license='midified MIT',
       author='Heewon Jeon',
@@ -39,7 +39,7 @@ setup(name='kobart',
       zip_safe=False,
       include_package_data=True,
       install_requires=[
-          'transformers == 4.1.1',
+          'transformers == 4.3.3',
           'torch == 1.7.1'
       ]
       )

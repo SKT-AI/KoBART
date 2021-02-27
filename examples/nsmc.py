@@ -224,7 +224,7 @@ class KoBARTClassification(Classification):
     def validation_step(self, batch, batch_idx):
         pred = self(batch['input_ids'], batch['attention_mask'])
         labels = batch['labels']
-        accuracy = self.metric_acc(pred.logits, labels)
+        accuracy = self.metric_acc(torch.nn.functional.softmax(pred.logits, dim=1), labels)
         self.log('accuracy', accuracy)
         result = {'accuracy': accuracy}
         # Checkpoint model based on validation loss

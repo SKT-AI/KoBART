@@ -29,9 +29,9 @@ from .utils import download as _download
 
 pytorch_kobart = {
     'url':
-    'https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_0e7711aa26.zip',
-    'fname': 'kobart_base_cased_0e7711aa26.zip',
-    'chksum': '0e7711aa26'
+    'https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_ff4bda5738.zip',
+    'fname': 'kobart_base_cased_ff4bda5738.zip',
+    'chksum': 'ff4bda5738'
 }
 
 
