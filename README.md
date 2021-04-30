@@ -93,7 +93,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 
 ## Demos
 
-- <a href="http://20.194.43.11:7874/" target="_blank">요약 데모</a>
+- <a href="http://52.231.69.211:8081/" target="_blank">요약 데모</a>
 
 <table><tr><td>
   <center><img src="imgs/kobart_summ.png" width="600"/></center>
