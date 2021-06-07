@@ -1,2 +1,2 @@
-torch == 1.7.1
-transformers == 4.3.3
+torch
+transformers
