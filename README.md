@@ -107,6 +107,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 - [KoBART Summarization](https://github.com/seujung/KoBART-summarization)
 - [NSMC Classification](https://github.com/SKT-AI/KoBART/tree/main/examples)
 - [KoBART Translation](https://github.com/seujung/KoBART-translation)
+- [LegalQA using Sentence**KoBART**](https://github.com/haven-jeon/LegalQA)
 
 
 *KoBART를 사용한 흥미로운 예제가 있다면 PR주세요!*
