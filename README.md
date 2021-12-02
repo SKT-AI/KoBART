@@ -1,56 +1,46 @@
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [🤣 KoBART](#kobart)
-  - [How to install](#how-to-install)
-  - [Data](#data)
-  - [Tokenizer](#tokenizer)
-  - [Model](#model)
-    - [Performances](#performances)
-      - [Classification or Regression](#classification-or-regression)
-      - [Summarization](#summarization)
-  - [Demos](#demos)
-  - [Examples](#examples)
-  - [Contacts](#contacts)
-  - [Changes](#changes)
-  - [License](#license)
-
-<!-- /code_chunk_output -->
-
-
 # 🤣 KoBART
+
+* [🤣 KoBART](#-kobart)
+  * [How to install](#how-to-install)
+  * [Data](#data)
+  * [Tokenizer](#tokenizer)
+  * [Model](#model)
+    * [Performances](#performances)
+      * [Classification or Regression](#classification-or-regression)
+      * [Summarization](#summarization)
+  * [Demos](#demos)
+  * [Examples](#examples)
+  * [Contacts](#contacts)
+  * [Changes](#changes)
+  * [License](#license)
 
 [**BART**](https://arxiv.org/pdf/1910.13461.pdf)(**B**idirectional and **A**uto-**R**egressive **T**ransformers)는 입력 텍스트 일부에 노이즈를 추가하여 이를 다시 원문으로 복구하는 `autoencoder`의 형태로 학습이 됩니다. 한국어 BART(이하 **KoBART**) 는 논문에서 사용된 `Text Infilling` 노이즈 함수를 사용하여 **40GB** 이상의 한국어 텍스트에 대해서 학습한 한국어 `encoder-decoder` 언어 모델입니다. 이를 통해 도출된 `KoBART-base`를 배포합니다.
 
-
-![](imgs/bart.png)
+![bart](imgs/bart.png)
 
 ## How to install
 
-```
+```bash
 pip install git+https://github.com/SKT-AI/KoBART#egg=kobart
 ```
 
 ## Data
 
-| Data  | # of Sentences |
-|-------|---------------:|
-| Korean Wiki |     5M   |  
-| Other corpus |  0.27B    | 
+| Data         | # of Sentences |
+| ------------ | -------------: |
+| Korean Wiki  |             5M |
+| Other corpus |          0.27B |
 
 한국어 위키 백과 이외, 뉴스, 책, [모두의 말뭉치 v1.0(대화, 뉴스, ...)](https://corpus.korean.go.kr/), [청와대 국민청원](https://github.com/akngs/petitions) 등의 다양한 데이터가 모델 학습에 사용되었습니다.
 
 ## Tokenizer
 
-[`tokenizers`](https://github.com/huggingface/tokenizers) 패키지의 `Character BPE tokenizer`로 학습되었습니다. 
+[`tokenizers`](https://github.com/huggingface/tokenizers) 패키지의 `Character BPE tokenizer`로 학습되었습니다.
 
-`vocab` 사이즈는 30,000 이며 대화에 자주 쓰이는 아래와 같은 이모티콘, 이모지 등을 추가하여 해당 토큰의 인식 능력을 올렸습니다. 
+`vocab` 사이즈는 30,000 이며 대화에 자주 쓰이는 아래와 같은 이모티콘, 이모지 등을 추가하여 해당 토큰의 인식 능력을 올렸습니다.
 > 😀, 😁, 😆, 😅, 🤣, .. , `:-)`, `:)`, `-)`, `(-:`...
 
-또한 `<unused0>` ~ `<unused99>`등의 미사용 토큰을 정의해 필요한 `subtasks`에 따라 자유롭게 정의해 사용할 수 있게 했습니다.
-
+또한 `<unused0>` ~ `<unused99>`등의 미사용 토큰을 정의해, 필요한 `subtasks`에 따라 자유롭게 정의해 사용할 수 있게 했습니다.
 
 ```python
 >>> from kobart import get_kobart_tokenizer
@@ -61,11 +51,10 @@ pip install git+https://github.com/SKT-AI/KoBART#egg=kobart
 
 ## Model
 
-| Model       |  # of params |   Type   | # of layers  | # of heads | ffn_dim | hidden_dims | 
-|--------------|:----:|:-------:|--------:|--------:|--------:|--------------:|
-| `KoBART-base` |  124M  |  Encoder |   6     | 16      | 3072    | 768 | 
-|               |        | Decoder |   6     | 16      | 3072    | 768 |
-
+| Model         | # of params |  Type   | # of layers | # of heads | ffn_dim | hidden_dims |
+| ------------- | :---------: | :-----: | ----------: | ---------: | ------: | ----------: |
+| `KoBART-base` |    124M     | Encoder |           6 |         16 |    3072 |         768 |
+|               |             | Decoder |           6 |         16 |    3072 |         768 |
 
 ```python
 >>> from transformers import BartModel
@@ -83,32 +72,29 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 
 #### Classification or Regression
 
-|   |  [NSMC](https://github.com/e9t/nsmc)(acc)  | [KorSTS](https://github.com/kakaobrain/KorNLUDatasets)(spearman) | [Question Pair](https://github.com/aisolab/nlp_classification/tree/master/BERT_pairwise_text_classification/qpair)(acc) | 
-|---|---|---|---|
-| **KoBART-base**  | 90.24  | 81.66  | 94.34  |
+|                 | [NSMC](https://github.com/e9t/nsmc)(acc) | [KorSTS](https://github.com/kakaobrain/KorNLUDatasets)(spearman) | [Question Pair](https://github.com/aisolab/nlp_classification/tree/master/BERT_pairwise_text_classification/qpair)(acc) |
+| --------------- | ---------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **KoBART-base** | 90.24                                    | 81.66                                                            | 94.34                                                                                                                   |
 
 #### Summarization
 
-*업데이트 예정*
+* 업데이트 예정 *
 
 ## Demos
 
-- <a href="https://huggingface.co/spaces/gogamza/kobart-summarization" target="_blank">요약 데모</a>
+* [요약 데모](https://huggingface.co/spaces/gogamza/kobart-summarization)
 
-<table><tr><td>
-  <center><img src="imgs/kobart_summ.png" width="600"/></center>
-</td></tr></table>
+<img src="imgs/kobart_summ.png" width="600"/>
 
 *위 예시는 [ZDNET 기사](https://zdnet.co.kr/view/?no=20201125093328)를 요약한 결과임*
 
 ## Examples
 
-- [KoBART ChitChatBot](https://github.com/haven-jeon/KoBART-chatbot)
-- [KoBART Summarization](https://github.com/seujung/KoBART-summarization)
-- [NSMC Classification](https://github.com/SKT-AI/KoBART/tree/main/examples)
-- [KoBART Translation](https://github.com/seujung/KoBART-translation)
-- [LegalQA using Sentence**KoBART**](https://github.com/haven-jeon/LegalQA)
-
+* [KoBART ChitChatBot](https://github.com/haven-jeon/KoBART-chatbot)
+* [KoBART Summarization](https://github.com/seujung/KoBART-summarization)
+* [NSMC Classification](https://github.com/SKT-AI/KoBART/tree/main/examples)
+* [KoBART Translation](https://github.com/seujung/KoBART-translation)
+* [LegalQA using Sentence**KoBART**](https://github.com/haven-jeon/LegalQA)
 
 *KoBART를 사용한 흥미로운 예제가 있다면 PR주세요!*
 
@@ -116,16 +102,15 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 
 `KoBART` 관련 이슈는 [이곳](https://github.com/SKT-AI/KoBART/issues)에 올려주세요.
 
-
 ## Changes
 
-- V0.3
-  - 토크나이저 버그로 인해 `<unk>` 토큰이 사라지는 이슈 해결
-- V0.2
-  - `KoBART` 모델 업데이트(서브테스트 sample efficient가 좋아짐)
-  - `모두의 말뭉치` 사용 버전 명시
-  - downloder 버그 수정
-  - `pip` 설치 지원
+* V0.3
+  * 토크나이저 버그로 인해 `<unk>` 토큰이 사라지는 이슈 해결
+* V0.2
+  * `KoBART` 모델 업데이트(서브테스트 sample efficient가 좋아짐)
+  * `모두의 말뭉치` 사용 버전 명시
+  * downloder 버그 수정
+  * `pip` 설치 지원
 
 ## License
 

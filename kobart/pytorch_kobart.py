@@ -28,23 +28,21 @@ from zipfile import ZipFile
 from .utils import download as _download
 
 pytorch_kobart = {
-    'url':
-    'https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_ff4bda5738.zip',
-    'fname': 'kobart_base_cased_ff4bda5738.zip',
-    'chksum': 'ff4bda5738'
+    "url": "https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_ff4bda5738.zip",
+    "fname": "kobart_base_cased_ff4bda5738.zip",
+    "chksum": "ff4bda5738",
 }
 
 
-def get_pytorch_kobart_model(ctx='cpu', cachedir='~/kobart/'):
+def get_pytorch_kobart_model(ctx="cpu", cachedir="~/kobart/"):
     # download model
     global pytorch_kobart
     model_info = pytorch_kobart
-    model_zip, is_cached = _download(model_info['url'],
-                                     model_info['fname'],
-                                     model_info['chksum'],
-                                     cachedir=cachedir)
+    model_zip, is_cached = _download(
+        model_info["url"], model_info["fname"], model_info["chksum"], cachedir=cachedir
+    )
     cachedir_full = os.path.expanduser(cachedir)
-    model_path = os.path.join(cachedir_full, 'kobart_from_pretrained')
+    model_path = os.path.join(cachedir_full, "kobart_from_pretrained")
     if not os.path.exists(model_path) or not is_cached:
         if not is_cached:
             shutil.rmtree(model_path, ignore_errors=True)
