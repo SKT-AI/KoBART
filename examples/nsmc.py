@@ -96,7 +96,7 @@ class NSMCDataset(Dataset):
             attention_mask = attention_mask[: self.max_seq_len]
         return {
             "input_ids": np.array(encoder_input_id, dtype=np.int_),
-            "attention_mask": np.array(attention_mask, dtype=np.float),
+            "attention_mask": np.array(attention_mask, dtype=float),
             "labels": np.array(label, dtype=np.int_),
         }
 
