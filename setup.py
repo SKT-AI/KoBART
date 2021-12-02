@@ -36,5 +36,6 @@ setup(
     long_description=open("README.md", encoding="utf-8").read(),
     zip_safe=False,
     include_package_data=True,
+    python_requires=">=3.6",
     install_requires=["transformers == 4.3.3", "torch == 1.7.1"],
 )
