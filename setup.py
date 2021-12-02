@@ -24,6 +24,13 @@
 from setuptools import find_packages, setup
 
 
+def install_requires():
+    with open("requirements.txt") as f:
+        lines = f.read().splitlines()
+        install_requires = [line for line in lines]
+        return install_requires
+
+
 setup(
     name="kobart",
     version=0.4,
@@ -37,5 +44,5 @@ setup(
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.6",
-    install_requires=["transformers == 4.3.3", "torch == 1.7.1"],
+    install_requires=install_requires(),
 )
