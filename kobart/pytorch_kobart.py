@@ -49,3 +49,16 @@ def get_pytorch_kobart_model(ctx="cpu", cachedir="~/kobart/"):
         zipf = ZipFile(os.path.expanduser(model_zip))
         zipf.extractall(path=cachedir_full)
     return model_path
+
+
+if __name__ == "__main__":
+    # pip install git+https://github.com/SKT-AI/KoBART#egg=kobart
+    from transformers import BartModel
+    from kobart import get_pytorch_kobart_model, get_kobart_tokenizer
+
+    kobart_tokenizer = get_kobart_tokenizer()
+    print(kobart_tokenizer.tokenize("안녕하세요. 한국어 BART 입니다.🤣:)l^o"))
+
+    model = BartModel.from_pretrained(get_pytorch_kobart_model())
+    inputs = kobart_tokenizer(["안녕하세요."], return_tensors="pt")
+    print(model(inputs["input_ids"]))
