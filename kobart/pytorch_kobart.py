@@ -25,7 +25,7 @@ import os
 import shutil
 from zipfile import ZipFile
 
-from .utils import download as _download
+from kobart.utils import download as _download
 
 pytorch_kobart = {
     "url": "https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_ff4bda5738.zip",
