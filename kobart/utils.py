@@ -38,7 +38,7 @@ tokenizer = {
 }
 
 
-def download(url, filename, chksum, cachedir="~/kogpt2/"):
+def download(url, filename, chksum, cachedir=".cached"):
     f_cachedir = os.path.expanduser(cachedir)
     os.makedirs(f_cachedir, exist_ok=True)
     file_path = os.path.join(f_cachedir, filename)

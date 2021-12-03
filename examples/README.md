@@ -35,7 +35,7 @@
   - install python packages
 
     ```bash
-    pip install pytorch-lightning transformers
+    pip install pytorch-lightning==1.2.1 transformers==4.3.3 wget
     ```
 
   - finetune

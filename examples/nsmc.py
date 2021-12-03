@@ -25,6 +25,7 @@ import argparse
 import logging
 import os
 
+import wget
 import pandas as pd
 import numpy as np
 import torch
@@ -36,10 +37,6 @@ from transformers import BartForSequenceClassification
 
 
 from kobart import get_kobart_tokenizer, get_pytorch_kobart_model
-
-parser = argparse.ArgumentParser(description="subtask for KoBART")
-
-parser.add_argument("--subtask", type=str, default="NSMC", help="NSMC")
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -57,7 +54,10 @@ class ArgsBase:
         )
 
         parser.add_argument(
-            "--test_file", type=str, default="nsmc/ratings_test.txt", help="test file"
+            "--test_file",
+            type=str,
+            default="nsmc/ratings_test.txt",
+            help="test file",
         )
 
         parser.add_argument("--batch_size", type=int, default=128, help="")
@@ -106,8 +106,23 @@ class NSMCDataModule(pl.LightningDataModule):
         super().__init__()
         self.batch_size = batch_size
         self.max_seq_len = max_seq_len
-        self.train_file_path = train_file
-        self.test_file_path = test_file
+        self.train_file_path = os.path.join(args.cachedir, train_file)
+        self.test_file_path = os.path.join(args.cachedir, test_file)
+        print("train_file_path:", self.train_file_path)
+        print("test_file_path:", self.test_file_path)
+
+        os.makedirs(os.path.dirname(self.train_file_path), exist_ok=True)
+        os.makedirs(os.path.dirname(self.test_file_path), exist_ok=True)
+        if not os.path.exists(self.train_file_path):
+            wget.download(
+                "https://www.dropbox.com/s/374ftkec978br3d/ratings_train.txt?dl=1",
+                self.train_file_path,
+            )
+        if not os.path.exists(self.test_file_path):
+            wget.download(
+                "https://www.dropbox.com/s/977gbwh542gdy94/ratings_test.txt?dl=1",
+                self.test_file_path,
+            )
 
     @staticmethod
     def add_model_specific_args(parent_parser):
@@ -260,6 +275,9 @@ class KoBARTClassification(Classification):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="subtask for KoBART")
+    parser.add_argument("--cachedir", type=str, default=".cache")
+    parser.add_argument("--subtask", type=str, default="NSMC", help="NSMC")
     parser = Classification.add_model_specific_args(parser)
     parser = ArgsBase.add_model_specific_args(parser)
     parser = NSMCDataModule.add_model_specific_args(parser)
