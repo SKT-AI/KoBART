@@ -34,7 +34,7 @@ pytorch_kobart = {
 }
 
 
-def get_pytorch_kobart_model(ctx="cpu", cachedir="~/kobart/"):
+def get_pytorch_kobart_model(ctx="cpu", cachedir=".cache"):
     # download model
     global pytorch_kobart
     model_info = pytorch_kobart

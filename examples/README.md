@@ -41,5 +41,5 @@
   - finetune
 
     ```bash
-    python nsmc.py --gpus 1 --max_epochs 3 --default_root_dir . --gradient_clip_val 1.0
+    python nsmc.py --gpus 1 --max_epochs 3 --default_root_dir .cache --gradient_clip_val 1.0
     ```

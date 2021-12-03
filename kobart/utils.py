@@ -61,7 +61,7 @@ def download(url, filename, chksum, cachedir=".cached"):
                 downloaded += len(data)
                 f.write(data)
                 done = int(50 * downloaded / total)
-                sys.stdout.write("\r[{}{}]".format("█" * done, "." * (50 - done)))
+                sys.stdout.write("\r[{}{}{}]".format(file_path, "█" * done, "." * (50 - done)))
                 sys.stdout.flush()
     sys.stdout.write("\n")
     assert (
@@ -70,7 +70,7 @@ def download(url, filename, chksum, cachedir=".cached"):
     return file_path, False
 
 
-def get_kobart_tokenizer(cachedir="~/kobart/"):
+def get_kobart_tokenizer(cachedir=".cache"):
     """Get KoGPT2 Tokenizer file path after downloading"""
     global tokenizer
     model_info = tokenizer

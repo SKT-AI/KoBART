@@ -284,6 +284,10 @@ if __name__ == "__main__":
     parser = pl.Trainer.add_argparse_args(parser)
     args = parser.parse_args()
     logging.info(args)
+
+    if args.default_root_dir is None:
+        args.default_root_dir = args.cachedir
+
     # init model
     model = KoBARTClassification(args)
 
