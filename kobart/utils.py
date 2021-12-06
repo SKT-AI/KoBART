@@ -23,12 +23,7 @@
 
 import hashlib
 import os
-import shutil
-import sys
-from zipfile import ZipFile
 
-import requests
-from transformers import PreTrainedTokenizerFast
 
 
 tokenizer = {
@@ -68,33 +63,3 @@ def download(url, filename, chksum, cachedir=".cached"):
         chksum == hashlib.md5(open(file_path, "rb").read()).hexdigest()[:10]
     ), "corrupted file!"
     return file_path, False
-
-
-def get_kobart_tokenizer(cachedir=".cache"):
-    """Get KoGPT2 Tokenizer file path after downloading"""
-    global tokenizer
-    model_info = tokenizer
-    file_path, is_cached = download(
-        model_info["url"], model_info["fname"], model_info["chksum"], cachedir=cachedir
-    )
-    cachedir_full = os.path.expanduser(cachedir)
-    if (
-        not os.path.exists(os.path.join(cachedir_full, "emji_tokenizer"))
-        or not is_cached
-    ):
-        if not is_cached:
-            shutil.rmtree(
-                os.path.join(cachedir_full, "emji_tokenizer"), ignore_errors=True
-            )
-        zipf = ZipFile(os.path.expanduser(file_path))
-        zipf.extractall(path=cachedir_full)
-    tok_path = os.path.join(cachedir_full, "emji_tokenizer/model.json")
-    tokenizer_obj = PreTrainedTokenizerFast(
-        tokenizer_file=tok_path,
-        bos_token="<s>",
-        eos_token="</s>",
-        unk_token="<unk>",
-        pad_token="<pad>",
-        mask_token="<mask>",
-    )
-    return tokenizer_obj

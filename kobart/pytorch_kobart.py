@@ -24,6 +24,7 @@
 import os
 import shutil
 from zipfile import ZipFile
+from transformers import PreTrainedTokenizerFast
 
 from kobart.utils import download as _download
 
@@ -49,6 +50,38 @@ def get_pytorch_kobart_model(ctx="cpu", cachedir=".cache"):
         zipf = ZipFile(os.path.expanduser(model_zip))
         zipf.extractall(path=cachedir_full)
     return model_path
+
+
+def get_kobart_tokenizer(cachedir=".cache"):
+    """Get KoGPT2 Tokenizer file path after downloading"""
+    tokenizer = {
+        "url": "s3://skt-lsl-apne2/model/public_storage/KoBART/tokenizers/kobart_base_tokenizer_cased_cf74400bce.zip",
+        "chksum": "cf74400bce",
+    }
+    file_path, is_cached = _download(
+        tokenizer["url"], tokenizer["chksum"], cachedir=cachedir
+    )
+    cachedir_full = os.path.expanduser(cachedir)
+    if (
+        not os.path.exists(os.path.join(cachedir_full, "emji_tokenizer"))
+        or not is_cached
+    ):
+        if not is_cached:
+            shutil.rmtree(
+                os.path.join(cachedir_full, "emji_tokenizer"), ignore_errors=True
+            )
+        zipf = ZipFile(os.path.expanduser(file_path))
+        zipf.extractall(path=cachedir_full)
+    tok_path = os.path.join(cachedir_full, "emji_tokenizer/model.json")
+    tokenizer_obj = PreTrainedTokenizerFast(
+        tokenizer_file=tok_path,
+        bos_token="<s>",
+        eos_token="</s>",
+        unk_token="<unk>",
+        pad_token="<pad>",
+        mask_token="<mask>",
+    )
+    return tokenizer_obj
 
 
 if __name__ == "__main__":
