@@ -26,23 +26,18 @@ import shutil
 from zipfile import ZipFile
 from transformers import PreTrainedTokenizerFast
 
-from kobart.utils import download as _download
-
-pytorch_kobart = {
-    "url": "https://kobert.blob.core.windows.net/models/kobart/kobart_base_cased_ff4bda5738.zip",
-    "fname": "kobart_base_cased_ff4bda5738.zip",
-    "chksum": "ff4bda5738",
-}
+from kobart.utils.utils import download
 
 
 def get_pytorch_kobart_model(ctx="cpu", cachedir=".cache"):
-    # download model
-    global pytorch_kobart
-    model_info = pytorch_kobart
-    model_zip, is_cached = _download(
-        model_info["url"], model_info["fname"], model_info["chksum"], cachedir=cachedir
+    pytorch_kobart = {
+        "url": "s3://skt-lsl-nlp-model/KoBART/models/kobart_base_cased_ff4bda5738.zip",
+        "chksum": "ff4bda5738",
+    }
+    model_zip, is_cached = download(
+        pytorch_kobart["url"], pytorch_kobart["chksum"], cachedir=cachedir
     )
-    cachedir_full = os.path.expanduser(cachedir)
+    cachedir_full = os.path.join(os.getcwd(), cachedir)
     model_path = os.path.join(cachedir_full, "kobart_from_pretrained")
     if not os.path.exists(model_path) or not is_cached:
         if not is_cached:
@@ -55,10 +50,10 @@ def get_pytorch_kobart_model(ctx="cpu", cachedir=".cache"):
 def get_kobart_tokenizer(cachedir=".cache"):
     """Get KoGPT2 Tokenizer file path after downloading"""
     tokenizer = {
-        "url": "s3://skt-lsl-apne2/model/public_storage/KoBART/tokenizers/kobart_base_tokenizer_cased_cf74400bce.zip",
+        "url": "s3://skt-lsl-nlp-model/KoBART/tokenizers/kobart_base_tokenizer_cased_cf74400bce.zip",
         "chksum": "cf74400bce",
     }
-    file_path, is_cached = _download(
+    file_path, is_cached = download(
         tokenizer["url"], tokenizer["chksum"], cachedir=cachedir
     )
     cachedir_full = os.path.expanduser(cachedir)

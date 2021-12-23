@@ -24,8 +24,6 @@
 import argparse
 import logging
 import os
-
-import wget
 import pandas as pd
 import numpy as np
 import torch
@@ -35,8 +33,9 @@ from pytorch_lightning import loggers as pl_loggers
 from transformers.optimization import AdamW, get_cosine_schedule_with_warmup
 from transformers import BartForSequenceClassification
 
-
 from kobart import get_kobart_tokenizer, get_pytorch_kobart_model
+from kobart.utils.utils import download
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -46,20 +45,6 @@ class ArgsBase:
     @staticmethod
     def add_model_specific_args(parent_parser):
         parser = argparse.ArgumentParser(parents=[parent_parser], add_help=False)
-        parser.add_argument(
-            "--train_file",
-            type=str,
-            default="nsmc/ratings_train.txt",
-            help="train file",
-        )
-
-        parser.add_argument(
-            "--test_file",
-            type=str,
-            default="nsmc/ratings_test.txt",
-            help="test file",
-        )
-
         parser.add_argument("--batch_size", type=int, default=128, help="")
         parser.add_argument("--max_seq_len", type=int, default=128, help="")
         return parser
@@ -102,27 +87,27 @@ class NSMCDataset(Dataset):
 
 
 class NSMCDataModule(pl.LightningDataModule):
-    def __init__(self, train_file, test_file, max_seq_len=128, batch_size=32):
+    def __init__(self, max_seq_len=128, batch_size=32):
         super().__init__()
         self.batch_size = batch_size
         self.max_seq_len = max_seq_len
-        self.train_file_path = os.path.join(args.cachedir, train_file)
-        self.test_file_path = os.path.join(args.cachedir, test_file)
-        print("train_file_path:", self.train_file_path)
-        print("test_file_path:", self.test_file_path)
 
-        os.makedirs(os.path.dirname(self.train_file_path), exist_ok=True)
-        os.makedirs(os.path.dirname(self.test_file_path), exist_ok=True)
-        if not os.path.exists(self.train_file_path):
-            wget.download(
-                "https://www.dropbox.com/s/374ftkec978br3d/ratings_train.txt?dl=1",
-                self.train_file_path,
-            )
-        if not os.path.exists(self.test_file_path):
-            wget.download(
-                "https://www.dropbox.com/s/977gbwh542gdy94/ratings_test.txt?dl=1",
-                self.test_file_path,
-            )
+        s3_train_file = {
+            "url": "s3://skt-lsl-nlp-model/KoBART/datasets/nsmc/ratings_train.txt",
+            "chksum": None,
+        }
+        s3_test_file = {
+            "url": "s3://skt-lsl-nlp-model/KoBART/datasets/nsmc/ratings_test.txt",
+            "chksum": None,
+        }
+
+        os.makedirs(os.path.dirname(args.cachedir), exist_ok=True)
+        self.train_file_path, is_cached = download(
+            s3_train_file["url"], s3_train_file["chksum"], cachedir=args.cachedir
+        )
+        self.test_file_path, is_cached = download(
+            s3_test_file["url"], s3_test_file["chksum"], cachedir=args.cachedir
+        )
 
     @staticmethod
     def add_model_specific_args(parent_parser):
@@ -276,7 +261,9 @@ class KoBARTClassification(Classification):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="subtask for KoBART")
-    parser.add_argument("--cachedir", type=str, default=".cache")
+    parser.add_argument(
+        "--cachedir", type=str, default=os.path.join(os.getcwd(), ".cache")
+    )
     parser.add_argument("--subtask", type=str, default="NSMC", help="NSMC")
     parser = Classification.add_model_specific_args(parser)
     parser = ArgsBase.add_model_specific_args(parser)
@@ -294,8 +281,6 @@ if __name__ == "__main__":
     if args.subtask == "NSMC":
         # init data
         dm = NSMCDataModule(
-            args.train_file,
-            args.test_file,
             batch_size=args.batch_size,
             max_seq_len=args.max_seq_len,
         )

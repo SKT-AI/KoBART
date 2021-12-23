@@ -24,42 +24,23 @@
 import hashlib
 import os
 
+from kobart.utils.aws_s3_downloader import AwsS3Downloader
 
 
-tokenizer = {
-    "url": "https://kobert.blob.core.windows.net/models/kobart/kobart_base_tokenizer_cased_cf74400bce.zip",
-    "fname": "kobart_base_tokenizer_cased_cf74400bce.zip",
-    "chksum": "cf74400bce",
-}
-
-
-def download(url, filename, chksum, cachedir=".cached"):
-    f_cachedir = os.path.expanduser(cachedir)
-    os.makedirs(f_cachedir, exist_ok=True)
-    file_path = os.path.join(f_cachedir, filename)
+def download(url, chksum=None, cachedir=".cache"):
+    cachedir_full = os.path.join(os.getcwd(), cachedir)
+    os.makedirs(cachedir_full, exist_ok=True)
+    filename = os.path.basename(url)
+    file_path = os.path.join(cachedir_full, filename)
     if os.path.isfile(file_path):
         if hashlib.md5(open(file_path, "rb").read()).hexdigest()[:10] == chksum:
-            print("using cached model")
+            print(f"using cached model. {file_path}")
             return file_path, True
-    with open(file_path, "wb") as f:
-        response = requests.get(url, stream=True)
-        total = response.headers.get("content-length")
 
-        if total is None:
-            f.write(response.content)
-        else:
-            downloaded = 0
-            total = int(total)
-            for data in response.iter_content(
-                chunk_size=max(int(total / 1000), 1024 * 1024)
-            ):
-                downloaded += len(data)
-                f.write(data)
-                done = int(50 * downloaded / total)
-                sys.stdout.write("\r[{}{}{}]".format(file_path, "█" * done, "." * (50 - done)))
-                sys.stdout.flush()
-    sys.stdout.write("\n")
-    assert (
-        chksum == hashlib.md5(open(file_path, "rb").read()).hexdigest()[:10]
-    ), "corrupted file!"
+    s3 = AwsS3Downloader()
+    file_path = s3.download(url, cachedir_full)
+    if chksum:
+        assert (
+            chksum == hashlib.md5(open(file_path, "rb").read()).hexdigest()[:10]
+        ), "corrupted file!"
     return file_path, False

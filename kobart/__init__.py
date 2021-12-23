@@ -21,7 +21,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from kobart.utils import download
+from kobart.utils.utils import download
 from kobart.pytorch_kobart import get_pytorch_kobart_model, get_kobart_tokenizer
 
 __all__ = ("download", "get_kobart_tokenizer", "get_pytorch_kobart_model")
