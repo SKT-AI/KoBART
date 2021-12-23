@@ -10,8 +10,8 @@
       * [Summarization](#summarization)
   * [Demos](#demos)
   * [Examples](#examples)
+  * [Release](#release)
   * [Contacts](#contacts)
-  * [Changes](#changes)
   * [License](#license)
 
 [**BART**](https://arxiv.org/pdf/1910.13461.pdf)(**B**idirectional and **A**uto-**R**egressive **T**ransformers)는 입력 텍스트 일부에 노이즈를 추가하여 이를 다시 원문으로 복구하는 `autoencoder`의 형태로 학습이 됩니다. 한국어 BART(이하 **KoBART**) 는 논문에서 사용된 `Text Infilling` 노이즈 함수를 사용하여 **40GB** 이상의 한국어 텍스트에 대해서 학습한 한국어 `encoder-decoder` 언어 모델입니다. 이를 통해 도출된 `KoBART-base`를 배포합니다.
@@ -73,7 +73,8 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 #### Classification or Regression
 
 |                 | [NSMC](https://github.com/e9t/nsmc)(acc) | [KorSTS](https://github.com/kakaobrain/KorNLUDatasets)(spearman) | [Question Pair](https://github.com/aisolab/nlp_classification/tree/master/BERT_pairwise_text_classification/qpair)(acc) |
-| --------------- | ---------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| --------------- | ---------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------
+----------------------------------- |
 | **KoBART-base** | 90.24                                    | 81.66                                                            | 94.34                                                                                                                   |
 
 #### Summarization
@@ -90,27 +91,31 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 
 ## Examples
 
+* [NSMC Classification](https://github.com/SKT-AI/KoBART/tree/main/examples)
 * [KoBART ChitChatBot](https://github.com/haven-jeon/KoBART-chatbot)
 * [KoBART Summarization](https://github.com/seujung/KoBART-summarization)
-* [NSMC Classification](https://github.com/SKT-AI/KoBART/tree/main/examples)
 * [KoBART Translation](https://github.com/seujung/KoBART-translation)
 * [LegalQA using Sentence**KoBART**](https://github.com/haven-jeon/LegalQA)
 
 *KoBART를 사용한 흥미로운 예제가 있다면 PR주세요!*
 
-## Contacts
+## Release
 
-`KoBART` 관련 이슈는 [이곳](https://github.com/SKT-AI/KoBART/issues)에 올려주세요.
-
-## Changes
-
-* V0.3
+* v0.5
+  * download large files from `aws s3`
+* v0.4
+  * Update model binary
+* v0.3
   * 토크나이저 버그로 인해 `<unk>` 토큰이 사라지는 이슈 해결
-* V0.2
+* v0.2
   * `KoBART` 모델 업데이트(서브테스트 sample efficient가 좋아짐)
   * `모두의 말뭉치` 사용 버전 명시
   * downloder 버그 수정
   * `pip` 설치 지원
+
+## Contacts
+
+`KoBART` 관련 이슈는 [이곳](https://github.com/SKT-AI/KoBART/issues)에 올려주세요.
 
 ## License
 
