@@ -2,41 +2,27 @@
 
 ## Run on a GPU machine
 
-### Prepare
-
-- pull a nvidia docker image
+- build a docker image
 
     ```bash
-    docker pull nvcr.io/nvidia/pytorch:21.05-py3
+    docker build -t kobart -f docker/Dockerfile .
     ```
 
 - run a docker container
 
     ```bash
     cd ~/KoBART # root directory of this repository
-    docker run --rm -d -it \
+    docker run --rm -it \
         -v $PWD:/home/ubuntu/KoBART \
         -e PYTHONPATH="/home/ubuntu/KoBART" \
         -w "/home/ubuntu/KoBART/examples" \
-        --name "kobart-nsmc" \
-        --entrypoint="/bin/bash" \
-        nvcr.io/nvidia/pytorch:21.05-py3
+        --name "kobart" \
+        kobart /bin/sh
     ```
-
-### Run
 
 - finetune KoBART model with NSMC
+
   - :warning: run on the docker container
-
-    ```bash
-    docker exec -it kobart-nsmc bash
-    ```
-
-  - install python packages
-
-    ```bash
-    pip install pytorch-lightning==1.2.1 transformers==4.3.3 wget
-    ```
 
   - finetune
 
