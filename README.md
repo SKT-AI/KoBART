@@ -101,6 +101,8 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 
 ## Release
 
+* v0.5.1
+  * guide default 'import statements'
 * v0.5
   * download large files from `aws s3`
 * v0.4
