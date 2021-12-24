@@ -34,7 +34,7 @@ from transformers.optimization import AdamW, get_cosine_schedule_with_warmup
 from transformers import BartForSequenceClassification
 
 from kobart import get_kobart_tokenizer, get_pytorch_kobart_model
-from kobart.utils.utils import download
+from kobart import download
 
 
 logger = logging.getLogger()

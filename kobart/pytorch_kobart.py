@@ -26,7 +26,7 @@ import shutil
 from zipfile import ZipFile
 from transformers import PreTrainedTokenizerFast
 
-from kobart.utils.utils import download
+from kobart import download
 
 
 def get_pytorch_kobart_model(ctx="cpu", cachedir=".cache"):
