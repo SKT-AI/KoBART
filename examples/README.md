@@ -12,10 +12,10 @@
 
     ```bash
     cd ~/KoBART # root directory of this repository
-    docker run --rm -it \
-        -v $PWD:/home/ubuntu/KoBART \
-        -e PYTHONPATH="/home/ubuntu/KoBART" \
-        -w "/home/ubuntu/KoBART/examples" \
+    docker run --gpus '"device=0"' --rm -it \
+        -v $HOME/KoBART:$HOME/KoBART \
+        -e PYTHONPATH="$HOME/KoBART" \
+        -w "$HOME/KoBART/examples" \
         --name "kobart" \
         kobart /bin/sh
     ```
