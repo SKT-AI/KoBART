@@ -96,6 +96,7 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 * [KoBART Summarization](https://github.com/seujung/KoBART-summarization)
 * [KoBART Translation](https://github.com/seujung/KoBART-translation)
 * [LegalQA using Sentence**KoBART**](https://github.com/haven-jeon/LegalQA)
+* [KoBART Question Generation (Kaggle)](https://www.kaggle.com/code/rycont/kobart-question-generation)
 
 *KoBART를 사용한 흥미로운 예제가 있다면 PR주세요!*
 
