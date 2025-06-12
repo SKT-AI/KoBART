@@ -33,7 +33,7 @@ def install_requires():
 
 setup(
     name="kobart",
-    version="0.5.1",
+    version="0.5.2",
     url="https://github.com/SKT-AI/KoBART.git",
     license="midified MIT",
     author="Heewon Jeon",

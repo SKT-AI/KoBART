@@ -23,8 +23,7 @@
 
 import hashlib
 import os
-
-from kobart.utils.aws_s3_downloader import AwsS3Downloader
+import urllib.request
 
 
 def download(url, chksum=None, cachedir=".cache"):
@@ -37,8 +36,13 @@ def download(url, chksum=None, cachedir=".cache"):
             print(f"using cached model. {file_path}")
             return file_path, True
 
-    s3 = AwsS3Downloader()
-    file_path = s3.download(url, cachedir_full)
+    print(f"downloading model from {url}...")
+    try:
+        urllib.request.urlretrieve(url, file_path)
+    except Exception as e:
+        print(f"download failed: {e}")
+        return None, False
+
     if chksum:
         assert (
             chksum == hashlib.md5(open(file_path, "rb").read()).hexdigest()[:10]
