@@ -31,7 +31,7 @@ from kobart import download
 
 def get_pytorch_kobart_model(ctx="cpu", cachedir=".cache"):
     pytorch_kobart = {
-        "url": "s3://skt-lsl-nlp-model/KoBART/models/kobart_base_cased_ff4bda5738.zip",
+        "url": "https://huggingface.co/skt/kobart-base-v1/resolve/main/legacy/kobart_base_cased_ff4bda5738.zip",
         "chksum": "ff4bda5738",
     }
     model_zip, is_cached = download(
@@ -50,7 +50,7 @@ def get_pytorch_kobart_model(ctx="cpu", cachedir=".cache"):
 def get_kobart_tokenizer(cachedir=".cache"):
     """Get KoGPT2 Tokenizer file path after downloading"""
     tokenizer = {
-        "url": "s3://skt-lsl-nlp-model/KoBART/tokenizers/kobart_base_tokenizer_cased_cf74400bce.zip",
+        "url": "https://huggingface.co/skt/kobart-base-v1/resolve/main/legacy/kobart_base_tokenizer_cased_cf74400bce.zip",
         "chksum": "cf74400bce",
     }
     file_path, is_cached = download(

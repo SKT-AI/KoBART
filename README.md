@@ -24,6 +24,8 @@
 pip install git+https://github.com/SKT-AI/KoBART#egg=kobart
 ```
 
+You can also download the model directly from the [Hugging Face Hub](https://huggingface.co/skt/kobart-base-v1).
+
 ## Data
 
 | Data         | # of Sentences |
@@ -77,10 +79,6 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 ----------------------------------- |
 | **KoBART-base** | 90.24                                    | 81.66                                                            | 94.34                                                                                                                   |
 
-#### Summarization
-
-* 업데이트 예정 *
-
 ## Demos
 
 * [요약 데모](https://huggingface.co/spaces/gogamza/kobart-summarization)
@@ -102,6 +100,8 @@ Seq2SeqModelOutput(last_hidden_state=tensor([[[-0.4418, -4.3673,  3.2404,  ..., 
 
 ## Release
 
+* v0.5.2
+  * download large files from `huggingface hub`
 * v0.5.1
   * guide default 'import statements'
 * v0.5
