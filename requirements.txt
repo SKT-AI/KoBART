@@ -1,4 +1,4 @@
 accelerate
 datasets
 torch
-transformers >= 4.52.4
+transformers >= 4.8.2
